@@ -24,7 +24,7 @@ iter = 1;
 [strain] = Find_Strain(KE,rho_old,Lx,Ly,nx,ny,P);
  %%
 %Calculate initial Lambda
-[Strain_energy_new,Lambda0] = Calc_Strain_Energy(rho_old,strain,R,P,nx,ny,a,b,Cm,0);
+Lambda0 =initial_Lambda(rho_old,strain,P,a,b,Cm)
 %% Optimiality criteria
 while (1)
 strain = Find_Strain(KE,rho_old,Lx,Ly,nx,ny,P);
