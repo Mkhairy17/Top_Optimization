@@ -42,6 +42,6 @@ ne=1;
    end
    end
    C=F'*U;
-   Volume_fraction= sum(V)/(Lx*Ly);
+   Volume_fraction= sum(V);
    
 
