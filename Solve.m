@@ -11,13 +11,11 @@ b = Ly/ny; %element height
 %% Parameters
 P = 3;
 rho_min = 10^-3;
-Volume_Fraction_constraint = 0.3;
+Volume_Fraction_constraint = 0.5;
 R = 0.04;
 E = 1;
 v = 0.3;
-s_6 = [[1 -v -v;-v 1 -v;-v -v 1] zeros(3,3);zeros(3,3) 2*(1+v)*eye(3,3)]/E;
-c_6 = inv(s_6);
-[KE,Cm] = Elementstiffness(a,b,c_6);
+[KE,Cm] = Elementstiffness(a,b,E,v);
 % Initialization of density distribution
 rho_old = ones(ny*nx,1)*0.5;
 iter = 1;

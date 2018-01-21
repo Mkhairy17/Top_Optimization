@@ -1,4 +1,28 @@
-function [KE,cm] = Elementstiffness(a,b,c)
+function [KE,cm] = Elementstiffness(a,b,E,v)
+
+c11 = 1/ E;
+c12 = -v/E;
+c13 = -v/E;
+c14 = 0;
+c15 = 0;
+c16 = 0;
+c22 = 1/E;
+c23 = -v/E;
+c24 = 0;
+c25 = 0;
+c26 = 0;
+c33 = 1/E;
+c34 = 0;
+c35 = 0;
+c36 = 0;
+c44 = 2*(1+v)/E;
+c45 = 0;
+c46 = 0;
+c55 = 2*(1+v)/E;
+c56 = 0;
+c66 = 2*(1+v)/E;
+s_6 = [c11 c12 c13 c14 c15 c16;c12 c22 c23 c24 c25 c26;c13 c23 c33 c34 c35 c36;c14 c24 c34 c44 c45 c46;c15 c25 c35 c45 c55 c56;c16 c26 c36 c46 c56 c66];
+c= inv(s_6);
 
 cm = c([1 2 6],[1 2 6])-c([1 2 6],[3 4 5])*inv(c([3 4 5],[3 4 5]))*c([3 4 5],[1 2 6]);
 
