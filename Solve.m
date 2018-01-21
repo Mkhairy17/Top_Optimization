@@ -34,7 +34,7 @@ end
 Total_strain_energy = sum(Strain_energy_new);
 Error = norm(rho_old-rho_new,'inf');
 %% Stopping Criteria
-if  Error < 1.0e-5
+if  Error < 1.0e-3
     break;
 end
 rho_old = rho_new;

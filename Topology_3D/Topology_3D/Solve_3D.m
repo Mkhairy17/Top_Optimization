@@ -1,5 +1,6 @@
 clc
 clear all
+profile on
 %% User inputs
 Lx = input('length of x=');
 Ly = input('length of y=');
