@@ -8,7 +8,7 @@ drho_dLambda ( rho_old < rho_min) = 0;
 deta_dLambda = sum(drho_dLambda)/(nx*ny);
 Lambda_new = Lambda_old - ( Volume_Fraction_old - Volume_Fraction_constraint)/(deta_dLambda);
 [Volume_Fraction_new,rho_new] = updatedensityC(Lambda_new,rho0,R,a,b,nx,ny,P,strain,rho_min,Cm,F);
-if norm(Volume_Fraction_new - Volume_Fraction_old,'inf') <= 1e-10
+if norm(Volume_Fraction_new - Volume_Fraction_old,'inf') <= 1e-3
 break;
 end
 rho_old=rho_new;
