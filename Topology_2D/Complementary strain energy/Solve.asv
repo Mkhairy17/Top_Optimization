@@ -11,7 +11,7 @@ b = Ly/ny; %element height
 %% Parameters
 P = 3;
 rho_min = 10^-3;
-Volume_Fraction_constraint = 0.5;
+Volume_Fraction_constraint = 0.3;
 R = 0.5*a;
 E = 1;
 v = 0.3;
