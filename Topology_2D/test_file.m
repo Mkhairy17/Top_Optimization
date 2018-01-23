@@ -1,6 +1,6 @@
 clear; clc
 global nx ny Lx Ly P 
-nx=35;    ny=35;
+nx=40;    ny=40;
 Lx=1;     Ly=1;
 P=1;       rho = 0.5*ones(nx,ny);
 [C,dC,Volume_fraction, dVolume_fraction] = sensitivity_analysis(rho,Lx,Ly,nx,ny,P);

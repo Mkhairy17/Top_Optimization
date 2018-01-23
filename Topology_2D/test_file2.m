@@ -1,18 +1,15 @@
-global nx ny Lx Ly P
-nx = 25;    
-ny = 25;
-Lx = 1;
-Ly = 1;
-P = 1;
+function x = Density_Update_NLP(rho,nx,ny,Lx,Ly,P)
+
+
 a = Lx/nx;
 b = Ly/ny;
 lb = 1e-3*ones(nx*ny,1);
 ub = ones(nx*ny,1);
 Aeq = [];
 Beq = [];
-rho = 0.5*ones(nx*ny,1);
-b = 0.5;
+
+bb = 0.5;
 A = a*b*ones(1,nx*ny);
 options = optimoptions('fmincon','SpecifyObjectiveGradient',true);
-x = fmincon(@myfun,rho,A,b,Aeq,Beq,lb,ub);
+x = fmincon(@sensitivity_analysis,rho,A,bb,Aeq,Beq,lb,ub,[],options);
  

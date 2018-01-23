@@ -1,4 +1,5 @@
-function [C,dC,Volume_fraction, dVolume_fraction] = sensitivity_analysis(rho,Lx,Ly,nx,ny,P)
+function [C,dC] = sensitivity_analysis(rho)
+global nx ny Lx Ly P
 a = Lx/nx; %elemeny width
 b = Ly/ny; %element height
 %% Parameters
@@ -30,14 +31,14 @@ ne=1;
        n2 = (ny+1)* i +j;
        edof = [2*n1+1 ; 2*n1+2 ; 2*n2+1 ; 2*n2+2 ; 2*n2-1 ; 2*n2 ; 2*n1-1 ; 2*n1]';
        u=U(edof);
-   Strain_energy(ne) =u'*KE*u;
-   dC(ne)=-(P*rho(ne)^(P-1))*Strain_energy(ne);
-   V(ne)=rho(ne)*a*b;
-   dVolume_fraction (ne)=a*b ;
-   ne=ne+1;
+       Strain_energy(ne) = u'*KE*u;
+       dC(ne)= -(P*rho(ne)^(P-1))*Strain_energy(ne);
+       V(ne) = rho(ne)*a*b;
+       dVolume_fraction (ne)=a*b ;
+       ne=ne+1;
    end
    end
    C=F'*U;
-   Volume_fraction= sum(V);
+   Volume_fraction = sum(V);
    
 

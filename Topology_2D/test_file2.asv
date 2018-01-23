@@ -1,6 +1,8 @@
+clc 
+clear
 global nx ny Lx Ly P
-nx = 25;    
-ny = 25;
+nx = 10;    
+ny = 10;
 Lx = 1;
 Ly = 1;
 P = 1;
@@ -10,9 +12,9 @@ lb = 1e-3*ones(nx*ny,1);
 ub = ones(nx*ny,1);
 Aeq = [];
 Beq = [];
-rho = 0.5*ones(nx*ny,1);
+rho = 0.5*ones(nx,ny);
 b = 0.5;
 A = a*b*ones(1,nx*ny);
 options = optimoptions('fmincon','SpecifyObjectiveGradient',true);
-x = fmincon(@myfun,rho,A,b,Aeq,Beq,lb,ub);
+x = fmincon(@sensitivity_analysis2,rho,A,b,Aeq,Beq,lb,ub,nonlcon,options);
  
