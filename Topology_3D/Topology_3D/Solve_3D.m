@@ -29,9 +29,6 @@ FixDOF = [3*fixednid(:); 3*fixednid(:)-1; 3*fixednid(:)-2]; % DOFs
 F = sparse(loaddof,1,-1,ndof,1);
 U = zeros(ndof,1);
 FreeDOF = setdiff(1:ndof,FixDOF);
-%Solve for U
-% U_3D(FreeDOF,:) = K(FreeDOF,FreeDOF) \ F(FreeDOF,:);
-% U_3D(FixDOF,:) = 0;
 tolit=1e-8;
 maxit=8000;
 M=diag(diag(K(FreeDOF,FreeDOF)));

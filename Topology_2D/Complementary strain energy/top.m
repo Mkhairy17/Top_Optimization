@@ -19,7 +19,7 @@ while change > 0.01
       n1 = (nely+1)*(elx-1)+ely; 
       n2 = (nely+1)* elx   +ely;
       Ue = U([2*n1-1;2*n1; 2*n2-1;2*n2; 2*n2+1;2*n2+2; 2*n1+1;2*n1+2],1);
-      c = c + x(ely,elx)^penal*Ue'*KE*Ue
+      c = c + x(ely,elx)^penal*Ue'*KE*Ue;
       dc(ely,elx) = -penal*x(ely,elx)^(penal-1)*Ue'*KE*Ue;
     end
   end
