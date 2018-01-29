@@ -9,7 +9,7 @@ ne = nx*ny;
 a = Lx/nx; %elemeny width
 b = Ly/ny; %element height
 %% Parameters
-P = 3;
+P = 1;
 rho_min = 10^-3;
 Volume_Fraction_constraint = 0.5;
 R = 0.5*a;
