@@ -1,11 +1,9 @@
-function [C,dC,Strain_energy,bn] = sensitivity_analysis_optimality(rho,nx,ny,Lx,Ly,P)
-a = Lx/nx; %elemeny width
-b = Ly/ny; %element height
+function [C,dC,Strain_energy] = sensitivity_analysis_optimality(rho,nx,ny,a,b,P)
 %% Parameters
 E = 1;
 v = 0.3;
 [KE] = Elementstiffness(a,b,E,v);
- %%
+%%
 % All degrees of freedom
 AllDOF = 1:2*(nx+1)*(ny+1);
 %Set Fixed degrees of freedom
@@ -37,7 +35,6 @@ ne=1;
        u = U(edof);
        Strain_energy(ne) = u'*KE*u;
        dC(ne) = -(P*rho(ne)^(P-1))*Strain_energy(ne);
-       bn(ne) = (-dC(ne)/P)*(rho(ne)^(P+1));
        ne = ne+1;
    end
    end

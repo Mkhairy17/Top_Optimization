@@ -1,4 +1,4 @@
-function [F] = Calc_F(rho_1,strain,R,a,b,nx,ny,P,Cm)
+% function [F] = Calc_F(rho_1,strain,R,a,b,nx,ny,P,Cm)
 ne = size(strain,1);
 steps_x = floor(R/a);
 steps_y = floor(R/b);

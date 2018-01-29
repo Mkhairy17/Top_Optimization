@@ -1,5 +1,4 @@
 function [rho_new,Lambda_new] = Solve_Lambda(Lambda_old,Volume_Fraction_constraint,rho_old,P,rho_min,nx,ny,vn,bn)
-Lambda_old = P*sum(bn)/sum(vn);
 Volume_Fraction_old = updatedensity_sensitivity(Lambda_old,bn,P,vn,rho_min);
 while 1
 drho_dLambda = -rho_old / ((P+1)*Lambda_old);
