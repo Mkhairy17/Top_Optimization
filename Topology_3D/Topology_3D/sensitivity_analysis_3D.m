@@ -1,13 +1,10 @@
-function [C,dC] = sensitivity_analysis_3D(rho)
-global nx ny nz Lx Ly Lz P 
+function [C,dC] = sensitivity_analysis_3D(rho,nx,ny,nz,Lx,Ly,Lz,P)
 a = Lx/nx; %elemeny width
 b = Ly/ny; %element height
 c = Lz/nz;  %Element depth
 %% Parameters
 E = 1;
 v = 0.3;
-ne = nx*ny*nz;
-rho = ones(ne,1);
 KE = Elementstiffness_3D2(a,b,c,E,v);
 K = global_matrix3D(KE,nx,ny,nz,P,rho);
 ndof = 3*(nx+1)*(ny+1)*(nz+1);

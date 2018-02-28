@@ -1,6 +1,6 @@
 function [KE] = Elementstiffness_3D(a,b,c)
 
-syms x y z 
+syms  x y z  
 E = 1;
 v = 0.3;
 c11 = 1/ E;

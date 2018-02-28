@@ -8,11 +8,11 @@ ny = input('ny=');
 ne = nx*ny;
 a = Lx/nx; %elemeny width
 b = Ly/ny; %element height
-vn = ones(nx*ny,1)*a*b;
+vn = ones(nx*ny,1)*a*b/Lx/Ly;
 %% Parameters
 P = 3;
 rho_min = 10^-3;
-R = 1.2*a;
+R = 1.5*a;
 Volume_Fraction_constraint = 0.5;
 %% Initialization of density distribution
 rho_old = ones(ny*nx,1)*0.5;
@@ -29,7 +29,7 @@ end
 [rho_new,Lambda_new] = Solve_Lambda(Lambda_old,Volume_Fraction_constraint,rho_old,P,rho_min,nx,ny,vn,bn);
 Error = norm(rho_old - rho_new,'inf');
 %% Stopping Criteria
-if  Error < 0.0001
+if  Error < 0.01
     break;
 end
 rho_old = rho_new;

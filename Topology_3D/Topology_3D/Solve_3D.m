@@ -11,26 +11,34 @@ ne = nx*ny*nz;
 a = Lx/nx; %elemeny width
 b = Ly/ny; %element length
 c = Lz/nz; %element height
-% Parameters
-P = 0;
-rho = ones(ne,1);
-KE = Elementstiffness_3D2(a,b,c);
-K = global_matrix3D(KE,nx,ny,nz,P,rho);
-ndof = 3*(nx+1)*(ny+1)*(nz+1);
-% USER-DEFINED LOAD DOFs
-[il,jl,kl] = meshgrid(nx, 0, 0:nz);                 % Coordinates
-loadnid = kl*(nx+1)*(ny+1)+il*(ny+1)+(ny+1-jl);     % Node IDs
-loaddof = 3*loadnid(:) - 1;                         % DOFs
-% USER-DEFINED SUPPORT FIXED DOFs
-[iif,jf,kf] = meshgrid(0,0:ny,0:nz);                  % Coordinates
-fixednid = kf*(nx+1)*(ny+1)+iif*(ny+1)+(ny+1-jf);     % Node IDs
-FixDOF = [3*fixednid(:); 3*fixednid(:)-1; 3*fixednid(:)-2]; % DOFs
-%% Force vector
-F = sparse(loaddof,1,-1,ndof,1);
-U = zeros(ndof,1);
-FreeDOF = setdiff(1:ndof,FixDOF);
-tolit=1e-8;
-maxit=8000;
-M=diag(diag(K(FreeDOF,FreeDOF)));
-U(FreeDOF,:)=pcg(K(FreeDOF,FreeDOF),F(FreeDOF,:),tolit,maxit,M);
-U(FixDOF,:) = 0;
+vn = (ones(nx*ny*nz,1)*a*b*c)/(Lx*Ly*Lz);
+E = 1;
+v = 0.3;
+%% Parameters
+P = 3;
+rho_min = 10^-3;
+R = 0.5*a;
+Volume_Fraction_constraint = 0.5;
+%% Initialization of density distribution
+rho_old = ones(ny*nx*nz,1)*0.5;
+Filter_template = ones(ny*nx*nz,1);
+iter = 1;
+Lambda_old = 10;
+%% Non-Linear programming algorithm
+while (1)
+if iter == 1
+F = Calc_F_Sensitivities_3D(Filter_template,R,a,b,c,nx,ny,nz);
+end
+% Filtered_densities
+[rho_old_filtered,bn,C] = Filtering_subroutine_3D(rho_old,F,nx,ny,nz,Lx,Ly,Lz,P);
+[rho_new,Lambda_new] = Solve_Lambda_3D(Lambda_old,Volume_Fraction_constraint,rho_old,P,rho_min,nx,ny,nz,vn,bn);
+Error = norm(rho_old - rho_new,'inf')
+%% Stopping Criteria
+if  Error < 0.01
+    break;
+end
+rho_old = rho_new;
+iter = iter+1;
+end
+%%
+display_3D(reshape(rho_old_filtered,nx,ny,nz))
