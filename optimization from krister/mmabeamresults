@@ -1,0 +1,48 @@
+Results when running the beam problem with MMA in matlab, 
+September 2007.
+
+>> beaminit 
+>> beammain 
+
+outvector1 =         0         0    1.5600         0
+outvector2 =    5         5         5         5         5
+
+outvector1 =    1.0000         0    1.2759    0.1670
+outvector2 =    5.6966    5.1410    4.3965    3.3533    1.8596
+
+>> maxoutit=5;
+>> beammain   
+
+outvector1 =    2.0000         0    1.3269    0.0399
+outvector2 =    5.8375    5.1815    4.3913    3.4435    2.4100
+
+outvector1 =    3.0000         0    1.3361    0.0099
+outvector2 =    6.0071    5.3200    4.5236    3.5002    2.0608
+
+outvector1 =    4.0000         0    1.3396    0.0007
+outvector2 =    6.0132    5.3033    4.4970    3.4995    2.1555
+
+outvector1 =    5.0000         0    1.3400    0.0000
+outvector2 =    6.0163    5.3080    4.4953    3.5008    2.1534
+
+outvector1 =    6.0000         0    1.3400   -0.0000
+outvector2 =    6.0160    5.3087    4.4947    3.5012    2.1530
+
+>> beammain
+
+outvector1 =    7.0000         0    1.3400   -0.0000
+outvector2 =    6.0160    5.3091    4.4944    3.5014    2.1528
+
+outvector1 =    8.0000         0    1.3400   -0.0000
+outvector2 =    6.0160    5.3092    4.4943    3.5015    2.1527
+
+outvector1 =    9.0000         0    1.3400   -0.0000
+outvector2 =    6.0160    5.3092    4.4943    3.5015    2.1527
+
+outvector1 =   10.0000         0    1.3400   -0.0000
+outvector2 =    6.0160    5.3092    4.4943    3.5015    2.1527
+
+outvector1 =   11.0000         0    1.3400   -0.0000
+outvector2 =    6.0160    5.3092    4.4943    3.5015    2.1527
+
+>>
