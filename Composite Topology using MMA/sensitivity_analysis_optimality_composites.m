@@ -1,4 +1,4 @@
-function [C,dC_drho,dC_dV1A,dC_dV2A,dC_dV3A,dC_dV4A,Strain_energy] = sensitivity_analysis_optimality_composites(rho,Amat,UU2,UU3,nx,ny,a,b,P)
+ function [C,dC_drho,dC_dV1A,dC_dV2A,dC_dV3A,dC_dV4A,Strain_energy] = sensitivity_analysis_optimality_composites(rho,Amat,UU2,UU3,nx,ny,a,b,P)
 %% Parameters
 [KE_A11,KE_A22,KE_A66,KE_A12,KE_A16,KE_A26] = Matrix_derivatives(a,b);
 % All degrees of freedom

@@ -5,8 +5,8 @@ lb = 1e-3*ones(nx*ny,1);
 ub = ones(nx*ny,1);
 Aeq = [];
 Beq = [];
-bb = 0.5;
-A = a*b*ones(1,nx*ny);
+bb = [1 ; 1]
+
 options = optimoptions('fmincon','SpecifyObjectiveGradient',true);
 x = fmincon(@sensitivity_analysis,rho,A,bb,Aeq,Beq,lb,ub,[],options);
  
