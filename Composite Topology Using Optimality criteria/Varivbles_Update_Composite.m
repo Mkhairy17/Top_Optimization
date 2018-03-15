@@ -8,5 +8,5 @@ bb = [];
 A = [];
 nn = @Constraint_equation_fmincon;
 options = optimoptions('fmincon','SpecifyObjectiveGradient',true);
-x = fmincon(@cal_C_element,xval,A,bb,Aeq,Beq,lb,ub,nn,options);
+x = fmincon(@Sensitivity_and_compliance,xval,A,bb,Aeq,Beq,lb,ub,nn,options);
  

@@ -19,34 +19,41 @@ iter = 1;
 Lambda = 1000;
 %% Initial A matrix values 
 xval = 0.5*ones(5,1);
+xval_new = 0.5*ones(5*Ne,1);  
 rho = 0.5*ones(Ne,1);
 Q = [181.81 2.9 0; 2.9 10.35  0;0 0 7.17] * 1e9;
-[Amat,U1,U2,U3,U4,U5] = xval_Amat(xval,Q,Ne);
+[Amat,U1,U2,U3,U4,U5] = xval_Amat(xval_new,Q,Ne);
 %% Non-Linear programming algorithm
 while (1)
 [U] = Displacement_solver(rho,Amat,nx,ny,a,b,P);
 el = 1;
 for j = 1:ny
-for i = 1:nx
-    [C_element,Psi] = cal_C_element(xval);
+    for i = 1:nx
+    cal_C_element(xval);   
     x = Varivbles_Update_Composite(xval);
+    xval_new(el) = x(1);
+    xval_new(el+Ne) = x(2);
+    xval_new(el+2*Ne) = x(3);
+    xval_new(el+3*Ne) = x(4); 
+    xval_new(el+4*Ne) = x(5);   
     el = el + 1;
+    end
 end
+[Amat,U1,U2,U3,U4,U5] = xval_Amat(xval_new,Q,Ne);
+rho_new = xval_new(4*Ne+1 : 5*Ne,1);
+eita(iter) = sum(rho_new) * Ae;
+if iter < 2 
+Lambda_vec(iter) = Lambda; 
+Lambda = 1020;
+else
+lambda_vec(iter) = Lambda_vec(iter-1) + (eita(iter-1)*(Lambda_vec(iter-2)-Lambda_vec(iter-1)))/(eita(iter-2)-eita(iter-1))
+Lambda = lambda_vec(iter);
 end
-[Amat,U1,U2,U3,U4,U5] = xval_Amat(xval,Q,Ne);
-[C,dC_drho,dC_dV1A,dC_dV2A,dC_dV3A,dC_dV4A,Strain_energy] = sensitivity_analysis_optimality_composites(rho_old,Amat,U2,U3,nx,ny,a,b,P);
-f0val = C;
-df0dx = [dC_dV1A;dC_dV2A;dC_dV3A;dC_dV4A;dC_drho]; 
-[xmma] = Update_variables_Composites(Ne,xval,eita_V0,Ae,f0val,df0dx);
-rho_new = xmma(4*Ne+1 : 5*Ne,1);
-Error = norm(rho_old - rho_new,'inf')
+Error = norm(rho - rho_new,'inf')
 %% Stopping Criteria
 % if  Error < 0.001
 %     break;
 % end
-rho_old = rho_new;
-xval = xmma;
-%Lambda_old = Lambda_new;
 iter = iter+1;
 %% Plotting the results
 % x_new = reshape(rho_new,nx,ny)';
