@@ -1,0 +1,19 @@
+function [C_element , Sensitivities_current] = Sensitivity_and_compliance(xval)
+global Phi Lambda  Ae  KE_A11 KE_A22 KE_A66 KE_A12 KE_A16 KE_A26 u P Psi K
+Q = [181.81 2.9 0; 2.9 10.35  0;0 0 7.17] * 1e9;
+[Amat1,UU1,UU2,UU3,UU4,UU5] = xval_Amat(xval,Q,1,P);
+A11 = Amat1(1);
+A12 = Amat1(2);
+A16 = Amat1(3);
+A26 = Amat1(4);
+A22 = Amat1(5);
+A66 = Amat1(6);
+Ael = [A11 A12 A16;A12 A22 A26 ;A16 A26 A66 ];
+rho = xval(5);
+C_element = sum(sum(Phi.*Ael^-1));
+dC_drho = - P * rho^-1 * u' * (A11*KE_A11+A22*KE_A22+A66*KE_A66+A12*KE_A12+A16*KE_A16+A26*KE_A26)* u;
+dC_dV1A = - u' * rho^P *(UU2*KE_A11 - UU2*KE_A22)* u ;
+dC_dV2A = - u' * rho^P *(UU2/2)*(KE_A16 + KE_A26)* u ;
+dC_dV3A = - u' * rho^P *(UU3 * KE_A11 + UU3*KE_A22 - UU3*KE_A66 - UU3* KE_A12)* u ;
+dC_dV4A = - u' * rho^P* (UU3 * KE_A16 - UU3 * KE_A26)* u ;
+Sensitivities_current = [dC_dV1A , dC_dV2A , dC_dV3A , dC_dV4A , dC_drho];
