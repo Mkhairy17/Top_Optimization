@@ -1,7 +1,6 @@
 clc
 clear all
 %% User inputs
-global Ne nx ny a b i j el P Amat U  Ae  Lambda KE_A11 KE_A22 KE_A66 KE_A12 KE_A16 KE_A26
 Lx = input('length of x=');
 Ly = input('length of y=');
 nx = input('nx=');
