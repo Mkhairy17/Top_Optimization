@@ -1,4 +1,5 @@
 function [KE] = Elementstiffness_composites(a,b,A)
+global KE
 A11 = A(1);
 A12 = A(2);
 A16 = A(3);

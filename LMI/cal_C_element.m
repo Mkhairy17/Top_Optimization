@@ -1,4 +1,4 @@
-function [V] = cal_C_element(Amat,i,j,el,ny,U,KE_A11,KE_A12,KE_A16,KE_A26,KE_A22,KE_A66)  
+function [V,Phi] = cal_C_element(Amat,i,j,el,ny,U,KE_A11,KE_A12,KE_A16,KE_A26,KE_A22,KE_A66)  
 %% Amat calculations
 A11 = Amat(el,1);
 A12 = Amat(el,2);
@@ -7,7 +7,7 @@ A26 = Amat(el,4);
 A22 = Amat(el,5);
 A66 = Amat(el,6);
 %%
-Ael = [A11 A12 A16;A12 A22 A26 ;A16 A26 A66 ];
+Ael = [A11 A12 A16;A12 A22 A26 ;A16 A26 A66];
 n1 = (ny+1)*(i-1)+j;
 n2 = (ny+1)* i +j;
 edof = [2*n1+1 ; 2*n1+2 ; 2*n2+1 ; 2*n2+2 ; 2*n2-1 ; 2*n2 ; 2*n1-1 ; 2*n1]';
