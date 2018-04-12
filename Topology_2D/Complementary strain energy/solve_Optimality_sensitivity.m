@@ -13,7 +13,7 @@ vn = ones(nx*ny,1)*a*b/Lx/Ly;
 P = 3;
 rho_min = 10^-3;
 R = 1.5*a;
-Volume_Fraction_constraint = 0.5;
+Volume_Fraction_constraint = 0.3;
 %% Initialization of density distribution
 rho_old = ones(ny*nx,1)*0.5;
 Filter_template = ones(nx*ny,1);
