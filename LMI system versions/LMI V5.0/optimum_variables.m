@@ -1,4 +1,4 @@
-function xval_opt = optimum_variables (U1,U2,U3,U4,U5,vv1,vv2,vv3,L)
+function xval_opt = optimum_variables (U1,U2,U3,U4,U5,vv1,vv2,vv3)
 c = [1 1 1 0 0 0 0]';
 setlmis([]);
 alpha1=lmivar(2,[1,1]); 
@@ -13,9 +13,6 @@ lmiterm([-1 4 1 0], vv1(1));   %V1'
 lmiterm([-1 4 2 0], vv1(2));   %V1'
 lmiterm([-1 4 3 0], vv1(3));   %V1'
 lmiterm([-1 4 4 alpha1],1,1);   %alfa1
-% lmiterm([-1 1 4 0],vv1(1));   %V1'
-% lmiterm([-1 2 4 0],vv1(2));   %V1'
-% lmiterm([-1 3 4 0],vv1(3));   %V1'
 % A11 =  U1 + U2.*V1 + U3.*V3;
 lmiterm([-1 1 1 0], U1);  %U1
 lmiterm([-1 1 1 V1], U2 , 1);  %U2.*V1

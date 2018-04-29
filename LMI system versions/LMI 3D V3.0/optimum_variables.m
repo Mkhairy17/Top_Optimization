@@ -638,7 +638,7 @@ lmiterm([-2 6 6 V5],-160,1);    %-160 V5
 
 %Create the LMI system
 lmisys = getlmis;
-options = [1e-20, 100, -1, 5, 1];
+options = [1e-1, 100, -1, 1, 0];
 [copt, xopt] = mincx (lmisys, c , options);
 xval_opt = xopt;
 V1=xopt(22);

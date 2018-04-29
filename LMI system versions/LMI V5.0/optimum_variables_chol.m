@@ -61,7 +61,7 @@ lmiterm([-1 3 3 0], U5);  %U5
 lmiterm([-1 3 3 V3],U3,-1);  % U3.*V3
 %==========================================
 
-% LMI 4 F >= 0
+% LMI 2 F >= 0
 lmiterm([-2 1 1 0], 3);   %CONSTANT = 3
 lmiterm([-2 1 1 V1], 4,1);   %4V1
 lmiterm([-2 1 1 V3], 1,1);   % V3
@@ -71,7 +71,7 @@ lmiterm([-2 1 2 V4], 2,1);   % 2V4
 
 
 lmiterm([-2 1 3 0], 1);   % CONSTANT = 1 
-lmiterm([-2 1 3 V3], -1,1);   % -1 * V3
+lmiterm([-2 1 3 V3], -1,1);   % -1 * V34
 
 
 lmiterm([-2 2 2 0], 4);   % CONSTANT = 4 
@@ -84,28 +84,15 @@ lmiterm([-2 2 3 V4], 2,-1);   % -2 V4
 lmiterm([-2 3 3 0],3);   % CONSTANT = 3 
 lmiterm([-2 3 3 V1],-4,1);   % - 4 V2 
 lmiterm([-2 3 3 V3],1,1);   %  V3
-
-
-% lmiterm([-2 2 1 V2], 4,1);   % 4V2 
-% lmiterm([-2 2 1 V4], 2,1);   % 2V4
-% 
-% lmiterm([-2 3 1 0], 1);   % CONSTANT = 1 
-% lmiterm([-2 3 1 V3], -1,1);   % -1 * V3
-
-
-% lmiterm([-2 3 2 V2], 4,1);   % 4 V2 
-% lmiterm([-2 3 2 V4], -2,1);   % -2 V4
-
-
-
 %=========================================
 %Create the LMI system
 lmisys = getlmis;
-options = [1e-9, 100, -1, 5, 1];
+options = [1e-9, 100, -1, 1, 1];
 [copt, xopt] = mincx (lmisys, c , options);
 xval_opt = xopt;
-evals = evallmi(lmisys,xopt);
-[lhs1,rhs1] = showlmi(evals,1) ;
+% evals = evallmi(lmisys,xopt);
+% [lhs1,rhs1] = showlmi(evals,1) ;
+% [tmin,xfeas] = feasp(lmisys)
 
 
 

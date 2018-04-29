@@ -23,7 +23,7 @@ rho_old = ones(ny*nx*nz,1)*0.5;
 iter = 1;
 %% Non-Linear programming algorithm
 while (1)
-[C,dC] = sensitivity_analysis_3D(rho_old);
+[C,dC] = sensitivity_analysis_3D(rho_old,nx,ny,nz,Lx,Ly,Lz,P);
 rho_new = MMA_3D(nx,ny,nz,rho_old,Volume_Fraction_constraint,dC);
 Error = norm(rho_old - rho_new,'inf');
 %% Stopping Criteria

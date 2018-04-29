@@ -17,7 +17,7 @@ v = 0.3;
 %% Parameters
 P = 3;
 rho_min = 10^-3;
-R = 0.5*a;
+R = 2*a;
 Volume_Fraction_constraint = 0.5;
 %% Initialization of density distribution
 rho_old = ones(ny*nx*nz,1)*0.5;
@@ -41,4 +41,4 @@ rho_old = rho_new;
 iter = iter+1;
 end
 %%
-display_3D(reshape(rho_old_filtered,nx,ny,nz))
+display_3D(reshape(rho_old_filtered,ny,nx,nz))

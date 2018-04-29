@@ -36,12 +36,13 @@ for j = 1:ny
         vv1 = eigen_vec(:,1);
         vv2 = eigen_vec(:,2);
         vv3 = eigen_vec(:,3);
-%         xval_opt = optimum_variables (U1,U2,U3,U4,U5,vv1,vv2,vv3);
-        xval_opt = optimum_variables_chol (U1,U2,U3,U4,U5,L);
-        xval_new(el) = xval_opt(7);
-        xval_new(el+Ne) = xval_opt(8);
-        xval_new(el+2*Ne) = xval_opt(9);
-        xval_new(el+3*Ne) = xval_opt(10); 
+%       xval_opt = optimum_variables (U1,U2,U3,U4,U5,vv1,vv2,vv3);
+%         xval_opt = optimum_variables_chol2(U1,U2,U3,U4,U5,L);
+        xval_opt = optimum_variables_chol(U1,U2,U3,U4,U5,L);
+        xval_new(el) = xval_opt(1);
+        xval_new(el+Ne) = xval_opt(2);
+        xval_new(el+2*Ne) = xval_opt(3);
+        xval_new(el+3*Ne) = xval_opt(4); 
         el = el+1;
     end
 end
